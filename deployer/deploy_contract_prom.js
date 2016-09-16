@@ -1,18 +1,9 @@
 /*
-async functions: 
+note: Compiler will compile multiple contracts from the same file and will output into the json under contracts: {{Contract_1: ****, Contract_2: ****}}
 
-    read_in_json
-    
-    unlock account
-    
-    check if mining + switch on + set switch_on_mining
-    
-    send contract in
-    
-    write json 
-    
-    toggle mining off if required
+need to change the code to accept this
 
+do I actually want it deploying multi contracts, what about inheritance?
  */
 
 var config = require("../deployer_config.js")
