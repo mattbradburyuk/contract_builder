@@ -54,7 +54,9 @@ var deployed_instance;
 read_in_compiled_json()
     .then(read_in_deployed_json)
     .then(set_deployed_instance)
-    .then(log_vars)
+    // .then(log_vars)
+    .then(set_drug)
+    .then(get_drug)
     .then(end_success, end_error);
 
 
@@ -115,6 +117,65 @@ function set_deployed_instance(){
 
 
 
+function set_drug(){
+    
+    return new Promise(function(resolve,reject){
+        
+        web3.personal.unlockAccount(web3.eth.coinbase,'mattspass');
+        deployed_instance.set_drug.sendTransaction('snuddles', {from: web3.eth.coinbase, to: deployed_address}, callback);
+        
+        var timer;
+        
+        function callback(e,tx_id){
+            if(e){
+                reject(e)
+            }else{
+                console.log("set_drug response: ", tx_id);
+                timer = setInterval(check_mined, 1000, tx_id)
+            }
+        }
+
+        function check_mined(tx_id){
+            console.log('check_mined called with: ', tx_id);
+            var tx_receipt = web3.eth.getTransaction(tx_id)
+            var bn = tx_receipt.blockNumber
+            // console.log("tx_receipt: ", tx_receipt.blockNumber);
+            if (bn != null){
+                console.log("bn not null: ", bn)
+                clearInterval(timer);
+                resolve()
+            }
+            
+            
+        }
+        
+    })
+}
+
+function get_drug(){
+    
+    return new Promise(function(resolve,reject){
+        
+        deployed_instance.get_drug.call(callback);
+        
+        function callback(e,r){
+            if(e){
+                reject(e)
+            }else{
+                console.log("get_drug response: ", r);
+                resolve(r)
+            }
+        }
+        
+    })
+}
+
+
+
+
+
+
+
 
 
 
@@ -130,7 +191,7 @@ function log_vars(){
         console.log("vars:");
         console.log("compiled_file_path: ", compiled_file_path);
         console.log("deployed_file_path ", deployed_file_path);
-        // console.log("compiled_contract_json: ", compiled_contract_json);
+        console.log("compiled_contract_json: ", compiled_contract_json);
         console.log("contract_interface: ", contract_interface);
         console.log("deployed_address: ", deployed_address);
         console.log("deployed_instance: ", deployed_instance);
