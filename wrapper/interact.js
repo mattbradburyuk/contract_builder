@@ -40,17 +40,20 @@ var rpc_client = jayson.client.http(url);
 // 3    expose an object which can call methods on
 
 
-// ********** Promise chain *********
-
-
-var file = options.file;
-
+// ********* declare vars *********
+ 
+var compiled_file_path = '../output/compiled/Prescription.json'
+var deployed_file_path = '../output/deployed/instance_of_Prescription.json'
+var compiled_contract_json;
 var contract_interface;
+var deployed_address;
 var deployed_instance;
 
-read_in_json()
-    // .then(pass_though)
-    .then(set_contract_interface)
+// ********** Promise chain *********
+
+read_in_compiled_json()
+    .then(read_in_deployed_json)
+    .then(set_deployed_instance)
     .then(log_vars)
     .then(end_success, end_error);
 
@@ -59,43 +62,59 @@ read_in_json()
 
 // ********** define promises ******************
 
-function read_in_json(){
-    console.log("read_in_json called");
+function read_in_compiled_json(){
+    console.log("read_in_compiled_json called");
     return new Promise(function(resolve,reject){
 
-        console.log(" ---> Reading in .json..... from file: ", file);
-        com_path = '../output/compiled/' + file;
-
-        jsonfile.readFile(com_path, callback);
+        console.log(" ---> Reading in .json..... from file: ", compiled_file_path);
+        
+        jsonfile.readFile(compiled_file_path, callback);
 
         function callback(e,json) {
             if (e) {
                 reject("read_in_json error");
             } else {
                 console.log(" ---> json read in\n");
-                resolve(json);
+                compiled_contract_json = json;
+                contract_interface = json.interface;
+                resolve();
             }
         }
     });
 }
 
-function set_contract_interface(val){
-    return new Promise(function(resolve, reject){
-        contract_interface = val.interface;
+function read_in_deployed_json(){
+    console.log("read_in_deployed_json called");
+    return new Promise(function(resolve,reject){
+
+        console.log(" ---> Reading in .json..... from file: ", deployed_file_path);
+
+        jsonfile.readFile(deployed_file_path, callback);
+
+        function callback(e,json) {
+            if (e) {
+                reject("read_in_json error");
+            } else {
+                console.log(" ---> json read in\n");
+                deployed_address = json.address;
+                resolve();
+            }
+        }
+    });
+}
+
+function set_deployed_instance(){
+    
+    return new Promise(function(resolve,reject){
+
+        var con = web3.eth.contract(JSON.parse(contract_interface));
+        deployed_instance =  con.at(deployed_address);
         resolve()
     });
 }
 
-function set_deployed_instance(val){
-    
-    return new Promise(function(resolve,reject){
-        
-        addr = val.addres
-        
-        
-    });
-    
-}
+
+
 
 
 
@@ -109,11 +128,18 @@ function log_vars(){
     return new Promise(function(resolve,reject){
         
         console.log("vars:");
-        console.log("file: ", file);
+        console.log("compiled_file_path: ", compiled_file_path);
+        console.log("deployed_file_path ", deployed_file_path);
+        // console.log("compiled_contract_json: ", compiled_contract_json);
         console.log("contract_interface: ", contract_interface);
+        console.log("deployed_address: ", deployed_address);
+        console.log("deployed_instance: ", deployed_instance);
         resolve();
     });
 }
+
+
+
 
 // ********* pass_through logger **********
 
