@@ -22,11 +22,13 @@ var files_to_compile = require("./files_to_compile.js");
 
 var cli = commandLineArgs([
     {name: 'file', alias: 'f', type: String, defaultValue: 'all', description: 'single file to compile'},
-    {name: 'output_file', alias: 'o', type: String, defaultValue: 'compiled_contract.json', description: 'name of output file '}
+    {name: 'output_file', alias: 'o', type: String, defaultValue: 'compiled_contract', description: 'name of output file '}
 ]);
 
+var options;
+
 try{
-    var options = cli.parse();
+    options = cli.parse();
     console.log('Starting with options:',JSON.stringify(options));
 }
 catch(e){
@@ -36,14 +38,11 @@ catch(e){
 
 
 
-// ***********
+// *********** get files and make input  *********
 
 var num_files = files_to_compile.files.length;
 console.log("num_file: ", num_files);
  
-
-// add: check files are .sol
-
 
 var collapsed = [];
 
@@ -52,12 +51,23 @@ var solc_input = {};
 for (i = 0; i < num_files; i++ ){
     var file_path = files_to_compile.path + files_to_compile.files[i];
     // console.log("file",i, ":",file_path);
-    
+
+    //check the file is a .sol
+    if (check_sol(file_path)==false) {
+        console.log(file_path, ": file not .sol");
+        return;
+    }
+
     collapsed[i] = collapse(file_path);
     solc_input[files_to_compile.files[i]] = collapsed[i] ;
 }
 
-console.log("solc_input:", solc_input, "\n\n");
+// console.log("solc_input:", solc_input, "\n\n");
+
+
+// ******** compile input  **************
+
+console.log("Compiling...");
 
 var output = solc.compile({sources: solc_input},1);
 
@@ -67,39 +77,19 @@ for (var contractName in output.contracts)
     console.log(contractName + ': ' + output.contracts[contractName].bytecode);
 
 
-
-//  *********** got to here **********
-
-
-return;
+// ********** write to .json file ************
 
 
-// ************ manage .sol files
-
-
-    //check the file is a .sol
-    if (check_sol(file)==false) {
-        console.log("file not .sol");
-        return;
-    }
-
-    var contract_name = file.slice(0,-4);
-
-
-
-    // write to .json file
-    com_path = '../output/compiled/' + contract_name +'.json';
-
-    console.log("com_path: ", com_path);
-    // jsonfile.writeFileSync(com_path, output.contracts['Contract_1']);
-    jsonfile.writeFileSync(com_path, output.contracts);
-    
-    // check file output
-    // console.log(jsonfile.readFileSync(com_path))
+var com_path = '../output/compiled/' + options.output_file +'.json';
+console.log("Writing compiled contracts to: ", com_path);
+jsonfile.writeFileSync(com_path, output);
 
 
 
 console.log(" *********  end of script **********");
+
+
+
 
 // ************* check .sol files ***********
 
