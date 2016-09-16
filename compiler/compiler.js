@@ -62,8 +62,9 @@ if (options.file == 'all'){
     
     // write to .json file
     com_path = '../output/compiled/' + contract_name +'.json';
-    jsonfile.writeFileSync(com_path, output.contracts[contract_name]);
     
+    console.log("com_path: ", com_path);
+    jsonfile.writeFileSync(com_path, output.contracts[contract_name]);
     
     // check file output
     // console.log(jsonfile.readFileSync(com_path))

@@ -12,34 +12,4 @@ truffle probably uses a contract on the chain to track deployments because then 
 
 
 
-pragma solidity ^0.4.1;   contract Prescription {      address doctor_id;     address patient_id;      struct Details {         string drug;         uint dose;         string freq;         uint num_days;     }      Details p_details;  \tfunction Prescription(string _drug, uint _dose, string _freq, uint _num_days ) { \t\tdoctor_id = msg.sender; \t\tp_details.drug = _drug; \t\tp_details.dose = _dose; \t\tp_details.freq = _freq; \t\tp_details.num_days = _num_days; \t}      function set_drug(string drug) {p_details.drug = drug;}     function set_dose(uint dose) {p_details.dose = dose;}     function set_freq(string freq) {p_details.freq = freq;}     function set_num_days(uint num_days) {p_details.num_days = num_days;}      function get_drug() constant returns (string) { return p_details.drug;}     function get_dose() constant returns (uint) { return p_details.dose;}     function get_freq() constant returns (string) { return p_details.freq;}     function get_num_days() constant returns (uint) { return p_details.num_days;}  }   \n
-
-
-
-{
-  blockHash: "0x89df93551c88c22432e86c8f1a3182b94a17b56a2e8d585b2bb828426d8d7432",
-  blockNumber: 1264,
-  from: "0x66b5e1814b35c6055279874a9ce7260baf565571",
-  gas: 90000,
-  gasPrice: 20000000000,
-  hash: "0xa9ef3fba4fcf27cccccbdfbd04c8037484b0b14a94b3a3bc9bf496228eb53925",
-  input: "0xa31f7671000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000085361757361676573000000000000000000000000000000000000000000000000",
-  nonce: 33,
-  to: "0xf39bccdc7e4497e24ca3b95fc495b4ffcfcf7273",
-  transactionIndex: 0,
-  value: 0
-}
-> eth.getTransactionReceipt("0xa9ef3fba4fcf27cccccbdfbd04c8037484b0b14a94b3a3bc9bf496228eb53925")
-{
-  blockHash: "0x89df93551c88c22432e86c8f1a3182b94a17b56a2e8d585b2bb828426d8d7432",
-  blockNumber: 1264,
-  contractAddress: null,
-  cumulativeGasUsed: 33097,
-  from: "0x66b5e1814b35c6055279874a9ce7260baf565571",
-  gasUsed: 33097,
-  logs: [],
-  root: "0353e5c8cb8302340869e1d5926088c92b41541ed4f2c7596b1c134a9ff1f29b",
-  to: "0xf39bccdc7e4497e24ca3b95fc495b4ffcfcf7273",
-  transactionHash: "0xa9ef3fba4fcf27cccccbdfbd04c8037484b0b14a94b3a3bc9bf496228eb53925",
-  transactionIndex: 0
-}
+pragma solidity ^0.4.1;  contract Contract_1{      uint stored_value;      function Contract_1(){         stored_value = 100;     }      function get_stored_value() constant returns (uint){         return stored_value;     } }

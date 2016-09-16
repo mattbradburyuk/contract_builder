@@ -1,3 +1,8 @@
+// objective: write some generic set up code to interact with a contract, (currently specific to Prescription)
+
+// need to work out how to have a contract object I can call whenever I like rather than at the end of the promise chain.
+
+
 var config = require("../deployer_config.js")
 var Web3 = require('web3');
 var jayson = require('jayson');
@@ -37,7 +42,7 @@ var rpc_client = jayson.client.http(url);
 // plan
 // 1    Get contract definition
 // 2    Get deployed instance
-// 3    expose an object which can call methods on
+// 3    test out with some methods on Prescription
 
 
 // ********* declare vars *********
