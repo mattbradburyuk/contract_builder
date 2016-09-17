@@ -1,6 +1,6 @@
 // note this script deliberately uses synchronous calls to run through like a script.
 
-console.log("Compiler called...\n");
+console.log("Compiler called...");
 
 // *********** import requirements  ***********
 
@@ -13,10 +13,9 @@ var jsonfile = require("jsonfile");
 // ********* get the config files  ************
 
 // note, as mushroom.js is in the root of the project the cwd() will always return the root so can use it to get to the .mushroom_config.js file
-console.log("tick");
+
 var root = process.cwd();
-console.log("toc");
-// var mc_path = process.cwd()+ "/.mushroom_config.js"
+
 var mc_path = root + "/.mushroom_config.js"
 var mushroom_config = require(mc_path);
 
@@ -28,10 +27,9 @@ var contract_config = require(cc_path)
 // *********** get files and make input  *********
 
 var num_files = contract_config.files_to_compile.length;
-console.log("num_file: ", num_files);
+// console.log("num_file: ", num_files);
 
 var collapsed = [];
-
 var solc_input = {};
 
 for (i = 0; i < num_files; i++ ){
@@ -45,38 +43,33 @@ for (i = 0; i < num_files; i++ ){
         console.log("error:", file, " not .sol file");
         return;
     }
-
     collapsed[i] = collapse(file_path);
     solc_input[contract_config.files_to_compile[i]] = collapsed[i] ;
-
 }
 
-
-console.log("\nsolc_input:", solc_input, "\n\n");
+// console.log("\nsolc_input:", solc_input, "\n\n");
 
 
 // ******** compile solc_input  **************
 
-console.log("Compiling...");
+console.log(" ---> compiling...");
 
 var output = solc.compile({sources: solc_input},1);
 
 // console.log("output:", output);
 
-for (var contractName in output.contracts)
-    console.log(contractName + ': ' + output.contracts[contractName].bytecode);
-
-
+// for (var contractName in output.contracts)
+//     console.log(contractName + ': ' + output.contracts[contractName].bytecode);
 
 // ********** write output to .json file ************
 
 var com_path = root + mushroom_config.structure.compiler_output_directory + contract_config.compiler_output_file;
-console.log("Writing compiled contracts to: ", com_path);
+console.log(" --> writing compiled contracts to: ", com_path);
 jsonfile.writeFileSync(com_path, output);
 
 
 
-console.log(" *********  end of script **********");
+console.log("\n *********  end of script **********");
 
 
 
@@ -91,14 +84,14 @@ function check_sol(file){
 // ************* Collapse .sol file *****************
 
 function collapse(path){
-    console.log("Collapsing: ", path);
+    console.log(" ---> collapsing: ", path);
 
     try {
         var data = fs.readFileSync(path);
     }
     catch(e){
         console.log(JSON.stringify(e))
-        throw "cannot read file";
+        throw " ---> cannot read file";
     }
 
     var code = data.toString();

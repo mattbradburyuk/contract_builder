@@ -5,12 +5,23 @@ to do
 
 - add cl tool
 
-- parameterise mushroom config + contract_config
+- make unlock account work for all account not just mine, ie sort out password
 
+- modify to produce compiled output that a can be deployed by a contract
+
+- need to change prescription javascript to use new format complied files (json structure changed to support multiple .sols)
 
 - get multi deployment working
 
 - add usage if cli errors
+
+- improve deployed_instances mechanism
+
+- do read me
+
+- add a wrapper for contract
+
+
 
 notes:
 

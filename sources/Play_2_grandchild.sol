@@ -6,7 +6,7 @@ contract grandchild_contract is child_contract {
 
     uint grandchild_value;
 
-    function child_contract(){
+    function grandchild_contract(){
         grandchild_value = 300;
     }
 

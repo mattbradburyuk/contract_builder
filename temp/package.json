@@ -1,0 +1,9 @@
+{
+  "name": "compiler",
+  "version": "0.0.1",
+  "dependencies": {
+    "jayson": "^2.0.0",
+    "web3": "^0.15.2",
+    "jsonfile": "^2.3.1"
+  }
+}

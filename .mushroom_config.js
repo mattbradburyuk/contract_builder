@@ -11,7 +11,7 @@ module.exports = {
         compiler_output_directory: "/output/compiled/",
         
         deployer: "multi_deploy.js",
-        deployer_location: "/deployer/",
+        deployer_location: "/.mushroom/deployers/",
         deployer_output_directory: "/output/deployed/",
         
         contract_config: "contract_config.js",
