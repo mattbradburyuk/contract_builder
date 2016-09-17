@@ -3,12 +3,16 @@ to do
 - make the deployed track more than one deployment of the contract
 - make the compiler compile and link multi class and library contracts
 
+- add cl tool
+
+- parameterise mushroom config + contract_config
 
 
+- get multi deployment working
+
+- add usage if cli errors
 
 notes:
 
 truffle probably uses a contract on the chain to track deployments because then it has a record of what's been deployed on that specific chain, if it stores the info locally then it might be deploying to a different chain
 
-
-pragma solidity ^0.4.1;  contract child_contract is base_contract {      uint child_value;      function child_contract(){         child_value = 200;     }      function get_child_value() constant returns (uint){         return child_value;     } }\n
