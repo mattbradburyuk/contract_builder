@@ -27,6 +27,10 @@ switch(command){
         require(deployer);
         break;
 
+    case 'helper':
+        console.log("Generating helper.js")
+    
+    
     default:
         console.log("Command not recognised");
         console.log("Correct usage: TBD");
