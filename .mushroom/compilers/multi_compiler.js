@@ -58,8 +58,8 @@ var output = solc.compile({sources: solc_input},1);
 
 // console.log("output:", output);
 
-// for (var contractName in output.contracts)
-//     console.log(contractName + ': ' + output.contracts[contractName].bytecode);
+for (var contractName in output.contracts)
+    console.log(contractName + ': ' + output.contracts[contractName].interface);
 
 // ********** write output to .json file ************
 

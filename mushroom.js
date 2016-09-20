@@ -28,8 +28,10 @@ switch(command){
         break;
 
     case 'helper':
-        console.log("Generating helper.js")
-    
+        var helper_generator = process.cwd() + config.structure.helper_generator_location + config.structure.helper_generator;
+        console.log("Generating helper.js");
+        require(helper_generator);
+        break;
     
     default:
         console.log("Command not recognised");
