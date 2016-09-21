@@ -1,1 +1,1 @@
-{"contracts":[{"name":"grandchild_contract","details":{"address":"0x026acd24b0e7edde363e01e1fdddcd9626c07e4c","tx_hash":"0x154eef039f9139306bae93b3a991720a0857150d79c1356dcd2732f752932035"}}]}
+{"contracts":[{"name":"base_contract","details":{"address":"0x266f8c89a93f139cb8e09b46f8fa17dcdddb9c0f","tx_hash":"0xae183be730b670ca88f98c0c510ad0c1a72987a52a9cf2cdc3b35a1196e96c69"}},{"name":"grandchild_contract","details":{"address":"0xe09bdf869fe19fadfc6d0bda267a194c7af9c49f","tx_hash":"0x9a0308d31c092370c0ae2c2430fa5d653f044f379e3861bcab12ee02406359bd"}}]}

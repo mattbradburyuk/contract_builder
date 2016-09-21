@@ -11,4 +11,9 @@ contract base_contract{
     function get_base_value() constant returns (uint){
         return base_value;
     }
+
+    function set_base_value(uint val) {
+        base_value = val;
+    }
+
 }
