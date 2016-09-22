@@ -110,13 +110,12 @@ var iface = JSON.parse(contract.interface)      // note interface appears to be 
 // console.log(iface)
 
 var method = iface[1];
-console.log(method)
+console.log("method: ",method)
 var method_name = method.name;
-console.log(method_name);
 
-var method_args = 'val';
+var method_args = 'val, tx_object';
 
-
+// 
 
 // read in helper_object_def template
 var object_def_file = process.cwd() + mushroom_config.structure.helper_generator_location + 'helper_template_object_def.js';
@@ -142,8 +141,7 @@ output_str = output_str.replace(/sub_class/g, contract_name);
 output_str = output_str.replace(/sub_method/g, method_name);
 output_str = output_str.replace(/sub_args/g, method_args);
 output_str = output_str.replace(/sub_abi/g, JSON.stringify(iface));
-output_str = output_str.replace(/sub_bytecode/g, '\"placeholder for bytecode\"');
-output_str = output_str.replace(/sub_address/g, '\"0x266f8c89a93f139cb8e09b46f8fa17dcdddb9c0f\"');
+output_str = output_str.replace(/sub_address/g, '0xa5d6225d83a35a72913213dc02118dacc0defa08');
 
 
 
