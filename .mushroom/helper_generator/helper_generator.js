@@ -113,8 +113,8 @@ var method = iface[1];
 console.log("method: ",method)
 var method_name = method.name;
 
-var method_args = 'val, tx_object';
-
+// var method_args = 'val, tx_object';
+var method_args = 'arg_array'
 // 
 
 // read in helper_object_def template
@@ -122,7 +122,7 @@ var object_def_file = process.cwd() + mushroom_config.structure.helper_generator
 var object_def_str = fs.readFileSync(object_def_file).toString();
 
 // read in helper_method template
-var method_file = process.cwd() + mushroom_config.structure.helper_generator_location + 'helper_template_method.js';
+var method_file = process.cwd() + mushroom_config.structure.helper_generator_location + 'helper_template_method_sendtx.js';
 var method_str = fs.readFileSync(method_file).toString();
 
 // create module.exports str

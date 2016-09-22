@@ -12,7 +12,7 @@ web3.setProvider(new web3.providers.HttpProvider(url));
 
 
 
-Base_contract = function (){
+var Base_contract = function (){
 
     console.log("Creating Base_contract...");
 
@@ -20,14 +20,14 @@ Base_contract = function (){
     var abi = JSON.parse('[{"constant":true,"inputs":[],"name":"get_base_value","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"val","type":"uint256"}],"name":"set_base_value","outputs":[],"payable":false,"type":"function"},{"inputs":[],"type":"constructor"}]');
     var address = '0x35163117322d53f8617ff5c559f7ea03ed0f107d';
     this.contract = web3.eth.contract(abi).at(address);
-    console.log("this.contract: ", this.contract.address)
+    // console.log("this.contract: ", this.contract.address)
     
 }
 
 Base_contract.prototype = {
 
-    set_base_value_send: function (val, tx_object) {
-
+    set_base_value: function (args) {
+        
         console.log("Base_contract.prototype set_base_value defined")
         console.log(this.name);
 
@@ -36,9 +36,9 @@ Base_contract.prototype = {
 
         return new Promise(function (resolve, reject) {
 
-            console.log("promise invoked with val: ", val)
+            console.log("promise invoked with val: ", args)
             console.log("contract in promise:", contract.address)
-            contract.set_base_value.sendTransaction(val, tx_object, callback);
+            contract.set_base_value.sendTransaction(args[0],args[1], callback);
 
             function callback(e,r) {
                 if (e) {
@@ -51,5 +51,8 @@ Base_contract.prototype = {
     }
 };
 
+
+// console.log("Base_contract: ", Base_contract);
+// console.log("Base_contract.prototype: ", Base_contract.prototype);
 
 module.exports = {Base_contract};

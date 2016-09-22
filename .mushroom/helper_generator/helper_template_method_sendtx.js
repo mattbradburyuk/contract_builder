@@ -2,8 +2,8 @@
 
 sub_class.prototype = {
 
-    sub_method_send: function (sub_args) {
-
+    sub_method: function (args) {
+        
         console.log("sub_class.prototype sub_method defined")
         console.log(this.name);
 
@@ -12,9 +12,9 @@ sub_class.prototype = {
 
         return new Promise(function (resolve, reject) {
 
-            console.log("promise invoked with val: ", val)
+            console.log("promise invoked with val: ", args)
             console.log("contract in promise:", contract.address)
-            contract.sub_method.sendTransaction(sub_args, callback);
+            contract.sub_method.sendTransaction(args[0],args[1], callback);
 
             function callback(e,r) {
                 if (e) {
@@ -27,4 +27,7 @@ sub_class.prototype = {
     }
 };
 
+
+// console.log("sub_class: ", sub_class);
+// console.log("sub_class.prototype: ", sub_class.prototype);
 
