@@ -2,11 +2,11 @@ pragma solidity ^0.4.1;
 
 import "Play_2_child.sol";
 
-contract grandchild_contract is child_contract {
+contract Grandchild_contract is Child_contract {
 
     uint grandchild_value;
 
-    function grandchild_contract(){
+    function Grandchild_contract(){
         grandchild_value = 300;
     }
 

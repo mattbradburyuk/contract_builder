@@ -1,5 +1,5 @@
 
-function sub_class(){
+sub_class = function (){
 
     console.log("Creating sub_class...");
 

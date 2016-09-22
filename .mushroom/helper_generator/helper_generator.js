@@ -125,13 +125,16 @@ var object_def_str = fs.readFileSync(object_def_file).toString();
 var method_file = process.cwd() + mushroom_config.structure.helper_generator_location + 'helper_template_method.js';
 var method_str = fs.readFileSync(method_file).toString();
 
+// create module.exports str
+var exports_str = 'module.exports = {sub_class};';
+
 // read in helper_test template
 var test_file = process.cwd() + mushroom_config.structure.helper_generator_location + 'helper_test.js';
 var test_str = fs.readFileSync(test_file).toString();
 
 
 
-var output_str = header_str+  object_def_str + method_str + test_str
+var output_str = header_str+  object_def_str + method_str + exports_str//+ test_str
 
 // substitutions:
 
@@ -141,7 +144,7 @@ output_str = output_str.replace(/sub_class/g, contract_name);
 output_str = output_str.replace(/sub_method/g, method_name);
 output_str = output_str.replace(/sub_args/g, method_args);
 output_str = output_str.replace(/sub_abi/g, JSON.stringify(iface));
-output_str = output_str.replace(/sub_address/g, '0xa5d6225d83a35a72913213dc02118dacc0defa08');
+output_str = output_str.replace(/sub_address/g, '0x35163117322d53f8617ff5c559f7ea03ed0f107d');
 
 
 

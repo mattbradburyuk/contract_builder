@@ -1,10 +1,10 @@
 pragma solidity ^0.4.1;
 
-contract base_contract{
+contract Base_contract{
 
     uint base_value;
 
-    function base_contract(){
+    function Base_contract(){
         base_value = 100;
     }
 

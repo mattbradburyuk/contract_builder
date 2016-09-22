@@ -2,11 +2,11 @@ pragma solidity ^0.4.1;
 
 import "Play_2_base.sol";
 
-contract child_contract is base_contract {
+contract Child_contract is Base_contract {
 
     uint child_value;
 
-    function child_contract(){
+    function Child_contract(){
         child_value = 200;
     }
 

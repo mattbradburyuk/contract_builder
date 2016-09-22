@@ -1,10 +1,11 @@
 
-
+var helper_file = '../../output/helper/helper.js'
+var helper = require(helper_file)
 
 
 // ************ test helper ***********
 
-var func = new sub_class();
+var func = new helper.Base_contract();
 
 console.log("func: ", func.contract.address);
 
@@ -13,7 +14,7 @@ console.log("func: ", func.contract.address);
 //     .then(func.set_base_value)
 //     .then(end_success,end_error);
 
-func.sub_method_send(123,{from: "0xf4e9b90cf88c0f20a97ed61496ec79afbb474e93"})
+func.set_base_value_send(1234,{from: "0xf4e9b90cf88c0f20a97ed61496ec79afbb474e93"})
     .then(end_success,end_error);
 
 
@@ -24,9 +25,9 @@ function wait_2000(pass_through){
     return new Promise(function (resolve,reject){
         console.log("pause.....")
         setTimeout(proceed,2000)
-        
+
         function proceed() {
-            
+
             console.log("proceeding.....")
             resolve(pass_through)
         }

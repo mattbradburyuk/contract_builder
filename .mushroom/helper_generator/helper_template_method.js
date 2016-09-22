@@ -25,4 +25,6 @@ sub_class.prototype = {
             }
         })
     }
-}
+};
+
+
