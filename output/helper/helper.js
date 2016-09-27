@@ -12,32 +12,34 @@ web3.setProvider(new web3.providers.HttpProvider(url));
 
 
 
-var Base_contract = function (){
+// module variables (closed over)
+
+var abi = JSON.parse('[{"constant":true,"inputs":[],"name":"get_base_value","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"val","type":"uint256"}],"name":"set_base_value","outputs":[],"payable":false,"type":"function"},{"inputs":[],"type":"constructor"}]');
+var address = '0xf6d0abc5bd183201a4845dc22733ad1cbf46180c';
+var contract = web3.eth.contract(abi).at(address);
+
+
+function Base_contract(){
 
     console.log("Creating Base_contract...");
 
-    this.name ='Matt'
-    var abi = JSON.parse('[{"constant":true,"inputs":[],"name":"get_base_value","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"val","type":"uint256"}],"name":"set_base_value","outputs":[],"payable":false,"type":"function"},{"inputs":[],"type":"constructor"}]');
-    var address = '0x35163117322d53f8617ff5c559f7ea03ed0f107d';
-    this.contract = web3.eth.contract(abi).at(address);
-    // console.log("this.contract: ", this.contract.address)
-    
 }
 
-Base_contract.prototype = {
+Base_contract.get_abi = function(){
+    return abi
+}
 
-    set_base_value: function (args) {
+Base_contract.get_contract = function(){
+    return contract
+}
+
+Base_contract.set_base_value = function (args) {
         
-        console.log("Base_contract.prototype set_base_value defined")
-        console.log(this.name);
-
-        var contract = this.contract;
-        console.log("contract outside of promise: ", contract.address)
+        console.log("set_base_value called")
+        console.log("args[0]:", args[0], "\nargs[1]", args[1])
 
         return new Promise(function (resolve, reject) {
 
-            console.log("promise invoked with val: ", args)
-            console.log("contract in promise:", contract.address)
             contract.set_base_value.sendTransaction(args[0],args[1], callback);
 
             function callback(e,r) {
@@ -47,12 +49,11 @@ Base_contract.prototype = {
                     resolve(r);
                 }
             }
-        })
-    }
+        });
 };
 
 
 // console.log("Base_contract: ", Base_contract);
 // console.log("Base_contract.prototype: ", Base_contract.prototype);
 
-module.exports = {Base_contract};
+module.exports = Base_contract;

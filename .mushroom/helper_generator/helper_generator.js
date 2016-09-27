@@ -110,7 +110,7 @@ var iface = JSON.parse(contract.interface)      // note interface appears to be 
 // console.log(iface)
 
 var method = iface[1];
-console.log("method: ",method)
+// console.log("method: ",method)
 var method_name = method.name;
 
 // var method_args = 'val, tx_object';
@@ -126,7 +126,7 @@ var method_file = process.cwd() + mushroom_config.structure.helper_generator_loc
 var method_str = fs.readFileSync(method_file).toString();
 
 // create module.exports str
-var exports_str = 'module.exports = {sub_class};';
+var exports_str = 'module.exports = sub_class;';
 
 // read in helper_test template
 var test_file = process.cwd() + mushroom_config.structure.helper_generator_location + 'helper_test.js';
@@ -144,7 +144,7 @@ output_str = output_str.replace(/sub_class/g, contract_name);
 output_str = output_str.replace(/sub_method/g, method_name);
 output_str = output_str.replace(/sub_args/g, method_args);
 output_str = output_str.replace(/sub_abi/g, JSON.stringify(iface));
-output_str = output_str.replace(/sub_address/g, '0x35163117322d53f8617ff5c559f7ea03ed0f107d');
+output_str = output_str.replace(/sub_address/g, '0xf6d0abc5bd183201a4845dc22733ad1cbf46180c');
 
 
 

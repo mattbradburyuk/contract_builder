@@ -1,12 +1,21 @@
 
-var sub_class = function (){
+// module variables (closed over)
+
+var abi = JSON.parse('sub_abi');
+var address = 'sub_address';
+var contract = web3.eth.contract(abi).at(address);
+
+
+function sub_class(){
 
     console.log("Creating sub_class...");
 
-    this.name ='Matt'
-    var abi = JSON.parse('sub_abi');
-    var address = 'sub_address';
-    this.contract = web3.eth.contract(abi).at(address);
-    // console.log("this.contract: ", this.contract.address)
-    
+}
+
+sub_class.get_abi = function(){
+    return abi
+}
+
+sub_class.get_contract = function(){
+    return contract
 }
