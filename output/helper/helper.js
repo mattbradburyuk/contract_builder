@@ -19,14 +19,13 @@ var address = '0xf6d0abc5bd183201a4845dc22733ad1cbf46180c';
 var contract = web3.eth.contract(abi).at(address);
 
 
-function Base_contract(){
-
-    console.log("Creating Base_contract...");
-
-}
-
 Base_contract.get_abi = function(){
     return abi
+}
+
+Base_contract.get_address = function(){
+
+    return address
 }
 
 Base_contract.get_contract = function(){

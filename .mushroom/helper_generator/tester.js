@@ -26,7 +26,7 @@ var myContract = require(helper_file)
 
 
 
-var args = [789,{from: "0xc80476e69d705adf704b4e20f5609b2def655a36"}];
+var args = [123,{from: "0xc80476e69d705adf704b4e20f5609b2def655a36"}];
 
 
 toggle_mining_on(args)

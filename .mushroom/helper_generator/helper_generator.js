@@ -102,12 +102,14 @@ for (var i in contracts_json){
     contract_names.push(i)
 }
 
-// console.log(contract_names)
+
+// *********** picking one contract to make a helper file for ***********
+
 
 var contract_name = contract_names[0]
 var contract = contracts_json[contract_name]
 var iface = JSON.parse(contract.interface)      // note interface appears to be in a string rather than json so need to parse
-// console.log(iface)
+
 
 var method = iface[1];
 // console.log("method: ",method)

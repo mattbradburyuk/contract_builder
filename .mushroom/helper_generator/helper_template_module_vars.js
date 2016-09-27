@@ -1,4 +1,3 @@
-
 // module variables (closed over)
 
 var abi = JSON.parse('sub_abi');
