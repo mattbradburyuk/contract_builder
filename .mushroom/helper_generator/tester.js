@@ -16,7 +16,11 @@ var rpc_client = jayson.client.http(url);
 // ************ import helper to test ******************
 
 
-var helper_file = '../../output/helper/Base_contract_helper.js'
+// var helper_file = '../../output/helper/Base_contract_helper.js'
+var helper_file = '../../output/helper/Grandchild_contract_helper.js'
+
+
+
 var myContract = require(helper_file)
 
 // test module level vars:
@@ -24,22 +28,44 @@ var myContract = require(helper_file)
 // console.log("myContract.get_contract: ", myContract.get_contract());
 
 
+// ************** pass args to tx/calls ***************
+
+var set_args_call = function () {
+    return new Promise(function (resolve, reject) {
+        var args = [{from: web3.eth.coinbase}];
+        resolve(args)
+    });
+}
+
+var set_args_tx = function () {
+    return new Promise(function (resolve, reject) {
+        var args = [456,{from: web3.eth.coinbase}];
+        resolve(args)
+    });
+}
 
 
-var args = [123,{from: "0xc80476e69d705adf704b4e20f5609b2def655a36"}];
+
+// ************** test promise chain ***************
 
 
-toggle_mining_on(args)
+toggle_mining_on()
     .then(unlock_acc)
+    .then(set_args_call)
+    .then(myContract.get_base_value)
+    .then(set_args_tx)
     .then(myContract.set_base_value)
-    // .then(wait_2000)
+    .then(set_args_call)
+    .then(myContract.get_base_value)
     .then(toggle_mining_off)
     .then(end_success,end_error);
 
 
 
 
-// ********* log pass_through
+// ************** define promises **************
+
+// ********* log pass_through *************
 
 function log_func(pass_through){
 
