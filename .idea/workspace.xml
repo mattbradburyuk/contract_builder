@@ -2,23 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c4621bde-1cf1-497d-98d7-c21ba7beceaf" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/helper/Base_contract_helper.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output/helper/Child_contract_helper.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/output/helper/.ignore_me.js" afterPath="$PROJECT_DIR$/output/helpers/.ignore_me.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.mushroom/helper_generator/helper_template.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/helpers/Base_contract_helper.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/output/helpers/Child_contract_helper.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/..old/compiler/compiler.js" afterPath="$PROJECT_DIR$/..old/compiler/compiler.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/..old/compiler/multi_compiler.js" afterPath="$PROJECT_DIR$/..old/compiler/multi_compiler.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/..old/contract_play/interact_play_1.js" afterPath="$PROJECT_DIR$/..old/contract_play/interact_play_1.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/..old/deployer/deploy_contract.js" afterPath="$PROJECT_DIR$/..old/deployer/deploy_contract.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/..old/deployer/deploy_contract_prom.js" afterPath="$PROJECT_DIR$/..old/deployer/deploy_contract_prom.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/..old/deployer/multi_deploy.js" afterPath="$PROJECT_DIR$/..old/deployer/multi_deploy.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/..old/wrapper/interact.js" afterPath="$PROJECT_DIR$/..old/wrapper/interact.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.mushroom/compilers/multi_compiler.js" afterPath="$PROJECT_DIR$/.mushroom/compilers/multi_compiler.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.mushroom/deployers/multi_deploy.js" afterPath="$PROJECT_DIR$/.mushroom/deployers/multi_deploy.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.mushroom/helper_generator/helper_generator.js" afterPath="$PROJECT_DIR$/.mushroom/helper_generator/helper_generator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.mushroom/helper_generator/tester.js" afterPath="$PROJECT_DIR$/.mushroom/helper_generator/tester.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.mushroom_config.js" afterPath="$PROJECT_DIR$/.mushroom_config.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/contract_config.js" afterPath="$PROJECT_DIR$/config/contract_config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mushroom.js" afterPath="$PROJECT_DIR$/mushroom.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/node_modules/crypto-js/cipher-core.js" afterPath="$PROJECT_DIR$/temp/node_modules/crypto-js/cipher-core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/node_modules/crypto-js/core.js" afterPath="$PROJECT_DIR$/temp/node_modules/crypto-js/core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/node_modules/crypto-js/crypto-js.js" afterPath="$PROJECT_DIR$/temp/node_modules/crypto-js/crypto-js.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/node_modules/web3/bower/crypto-js/cipher-core.js" afterPath="$PROJECT_DIR$/temp/node_modules/web3/bower/crypto-js/cipher-core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/node_modules/web3/bower/crypto-js/core.js" afterPath="$PROJECT_DIR$/temp/node_modules/web3/bower/crypto-js/core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/node_modules/web3/bower/crypto-js/crypto-js.js" afterPath="$PROJECT_DIR$/temp/node_modules/web3/bower/crypto-js/crypto-js.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/deployed/deployed_instances.json" afterPath="$PROJECT_DIR$/output/deployed/deployed_instances.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/interact.js" afterPath="$PROJECT_DIR$/temp/interact.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/node_modules/JSONStream/test/gen.js" afterPath="$PROJECT_DIR$/temp/node_modules/JSONStream/test/gen.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/node_modules/web3/dist/web3-light.js" afterPath="$PROJECT_DIR$/temp/node_modules/web3/dist/web3-light.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/node_modules/web3/dist/web3.js" afterPath="$PROJECT_DIR$/temp/node_modules/web3/dist/web3.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/node_modules/xmlhttprequest/lib/XMLHttpRequest.js" afterPath="$PROJECT_DIR$/temp/node_modules/xmlhttprequest/lib/XMLHttpRequest.js" />
     </list>
     <ignored path="contract_builder.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,8 +58,8 @@
           <file leaf-file-name="helper_generator.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/.mushroom/helper_generator/helper_generator.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="465">
-                  <caret line="215" column="9" selection-start-line="215" selection-start-column="9" selection-end-line="215" selection-end-column="9" />
+                <state relative-caret-position="660">
+                  <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -85,7 +89,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="mushroom.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="mushroom.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/mushroom.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="480">
@@ -105,11 +109,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="contract_config.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="contract_config.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/config/contract_config.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+                <state relative-caret-position="75">
+                  <caret line="5" column="58" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
                   <folding />
                 </state>
               </provider>
@@ -186,8 +190,8 @@
         <option value="$PROJECT_DIR$/output/helper/Child_contract_helper.js" />
         <option value="$PROJECT_DIR$/.mushroom/helper_generator/tester.js" />
         <option value="$PROJECT_DIR$/mushroom.js" />
-        <option value="$PROJECT_DIR$/.mushroom/helper_generator/helper_generator.js" />
         <option value="$PROJECT_DIR$/config/contract_config.js" />
+        <option value="$PROJECT_DIR$/.mushroom/helper_generator/helper_generator.js" />
       </list>
     </option>
   </component>
@@ -204,7 +208,7 @@
     <option name="x" value="-372" />
     <option name="y" value="-1401" />
     <option name="width" value="2536" />
-    <option name="height" value="1320" />
+    <option name="height" value="1401" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -434,8 +438,18 @@
       <recent name="$PROJECT_DIR$/mushroom/compilers" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.tester.js">
+  <component name="RunManager" selected="Node.js.mushroom.js">
     <configuration default="false" name="tester.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="tester.js" working-dir="$PROJECT_DIR$/.mushroom/helper_generator">
+      <method />
+    </configuration>
+    <configuration default="false" name="helper_generator.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="helper_generator.js" working-dir="$PROJECT_DIR$/.mushroom/helper_generator">
+      <method />
+    </configuration>
+    <configuration default="false" name="mushroom.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="mushroom.js" application-parameters="helpers" working-dir="$PROJECT_DIR$">
+      <profiling v8-profiler-path="" />
+      <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSProfilingRunConfigurationExtension">
+        <profiling v8-profiler-path="" />
+      </EXTENSION>
       <method />
     </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -491,12 +505,16 @@
       <recursive>false</recursive>
       <method />
     </configuration>
-    <list size="1">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Node.js.tester.js" />
+      <item index="1" class="java.lang.String" itemvalue="Node.js.helper_generator.js" />
+      <item index="2" class="java.lang.String" itemvalue="Node.js.mushroom.js" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Node.js.tester.js" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Node.js.mushroom.js" />
+        <item index="1" class="java.lang.String" itemvalue="Node.js.helper_generator.js" />
+        <item index="2" class="java.lang.String" itemvalue="Node.js.tester.js" />
       </list>
     </recent_temporary>
   </component>
@@ -521,16 +539,16 @@
       <workItem from="1474359664929" duration="42418000" />
       <workItem from="1474581756414" duration="17000" />
       <workItem from="1474613365760" duration="1728000" />
-      <workItem from="1474888041030" duration="31857000" />
+      <workItem from="1474888041030" duration="33768000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145943000" />
+    <option name="totallyTimeSpent" value="147854000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-372" y="-1401" width="2536" height="1320" extended-state="0" />
-    <editor active="true" />
+    <frame x="-372" y="-1401" width="2536" height="1401" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11729623" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -541,7 +559,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24947442" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15879479" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25458714" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4484339" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -571,7 +589,21 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/.mushroom/helper_generator/helper_generator.js</url>
+          <line>4</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/.mushroom/helper_generator/helper_generator.js</url>
+          <line>19</line>
+          <properties />
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -627,13 +659,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-15">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.mushroom/helper_generator/helper_template.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -861,6 +886,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config/contract_config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="58" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.mushroom/helper_generator/helper_template.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mushroom.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -869,18 +910,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/contract_config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.mushroom/helper_generator/helper_generator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="215" column="9" selection-start-line="215" selection-start-column="9" selection-end-line="215" selection-end-column="9" />
+        <state relative-caret-position="660">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
           <folding />
         </state>
       </provider>

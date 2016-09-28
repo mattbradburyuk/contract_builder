@@ -15,7 +15,7 @@ var jayson = require("jayson");
 
 // ********* get the config files  ************
 
-// note, as mushroom.js is in the root of the project the cwd() will always return the root so can use it to get to the .mushroom_config.js file
+// note, as mushroom.js is in the root of the project the cwd() will always return the root so can use it to get to the .mushroom_config.js compiled_file
 
 var root = process.cwd();
 
@@ -38,12 +38,9 @@ var rpc_client = jayson.client.http(url);
 
 // ********** Read in compiled contract details *************
 
-
-var file = contract_config.compiler_output_file_to_deploy;
-var file_path = root + mushroom_config.structure.compiler_output_directory + file
-
-var compiled_output_json = jsonfile.readFileSync(file_path);
-var compiled_contracts_json = compiled_output_json.contracts
+var compiled_file = root + mushroom_config.structure.compiler_output_directory + contract_config.compiler_output_file_to_deploy;
+var compiled_json = jsonfile.readFileSync(compiled_file);
+var compiled_contracts_json = compiled_json.contracts
 var compiled_contracts_names = [];
 
 for (var i in compiled_contracts_json){
@@ -53,11 +50,12 @@ for (var i in compiled_contracts_json){
 console.log("Compiled contracts:")
 console.log(" ---> ", compiled_contracts_names)
 
+
+
 // ********** get json of deployed contracts ****************
 
 var deployed_file = process.cwd() + mushroom_config.structure.deployer_output_directory + 'deployed_instances.json'
-var deployed_json_str = fs.readFileSync(deployed_file).toString()
-var deployed_json = JSON.parse(deployed_json_str);
+var deployed_json = jsonfile.readFileSync(deployed_file)
 var deployed_contracts_names = []
 
 for (var i in deployed_json.contracts) {
@@ -72,13 +70,13 @@ console.log(" ---> ",deployed_contracts_names )
 
 
 for (var i in compiled_contracts_names) {
-
     if (i in deployed_contracts_names){
-
         make_helper_for_contract(compiled_contracts_names[i])
     }
 }
 
+
+// ************** make the helper for each contract ************
 
 function make_helper_for_contract(contract_name) {
 
@@ -91,7 +89,7 @@ function make_helper_for_contract(contract_name) {
 
 
 
-    // ********* set output file ***************
+    // ********* set output compiled_file ***************
 
     var output_file = process.cwd() + mushroom_config.structure.helper_output_directory + contract_name + '_helper.js'
 
@@ -145,12 +143,11 @@ function make_helper_for_contract(contract_name) {
     console.log(" ---> num_methods: ", num_methods)
     console.log(" ---> methods:")
 
-    var method_strs = [];
+    var method_strs = []; //  stores the output strings for each method
 
     for (var i = 0; i < num_methods; i++) {
 
         var method = iface[i];
-        // console.log("method: ",method)
 
         var method_name = method.name;
         console.log("      ---> ", method_name)
@@ -160,8 +157,8 @@ function make_helper_for_contract(contract_name) {
         }
 
 
+        // make the number of method arguments in the helper method to match the contract method
         var num_args = method.inputs.length
-        // console.log("num_args", num_args)
 
         var arg_str = '';
         var arg_log_str = ''
@@ -172,17 +169,17 @@ function make_helper_for_contract(contract_name) {
 
         }
 
+        // trim off trailing ','
         arg_str = arg_str.slice(0, arg_str.length - 1)
         arg_log_str = arg_log_str.slice(0, arg_log_str.length - 1)
 
+        // check strings
         // console.log("arg_str: ", arg_str)
         // console.log("log_arg_str: ", arg_log_str, "\n")
 
 
-        // read in helper_method template
-
+        // read in helper_method template (either tx or call depending if method is constant)
         var method_file;
-
         if (method.constant) {
             method_file = process.cwd() + mushroom_config.structure.helper_generator_location + 'helper_template_method_call.js';
 
@@ -191,19 +188,16 @@ function make_helper_for_contract(contract_name) {
             method_file = process.cwd() + mushroom_config.structure.helper_generator_location + 'helper_template_method_sendtx.js';
         }
 
-
-        // need array of strings for each method
         method_strs[i] = fs.readFileSync(method_file).toString();
 
-        // console.log("method_str[",i,"]:",method_strs[i])
-
+        // substitutions to make method specific
         method_strs[i] = method_strs[i].replace(/sub_method/g, method_name)
         method_strs[i] = method_strs[i].replace(/sub_args/g, arg_str)
         method_strs[i] = method_strs[i].replace(/sub_log_args/g, arg_log_str)
 
-
     }
 
+    // creates a single string with all methods in
     var method_str = ''
     for (var i in method_strs) {
         method_str = method_str + method_strs[i]
@@ -214,6 +208,8 @@ function make_helper_for_contract(contract_name) {
 
     var exports_str = 'module.exports = Contract;';
 
+
+    //  *********** create and write the complete output string to the output file ***********
 
     var output_str = header_str + module_vars_str + method_str + exports_str
 

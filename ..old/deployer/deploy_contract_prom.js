@@ -16,7 +16,7 @@ var jsonfile = require("jsonfile");
 // ************* read in commandline options
 
 var cli = commandLineArgs([
-    {name: 'file', alias: 'f', type: String, defaultValue: 'all', description: 'file to compile'}
+    {name: 'compiled_file', alias: 'f', type: String, defaultValue: 'all', description: 'compiled_file to compile'}
 ]);
 
 try{
@@ -63,7 +63,7 @@ function read_in_json(){
     console.log("read_in_json called");
     return new Promise(function(resolve,reject){
 
-        console.log(" ---> Reading in .json..... from file: ", file);
+        console.log(" ---> Reading in .json..... from compiled_file: ", file);
         com_path = '../output/compiled/' + file;
 
         jsonfile.readFile(com_path, callback);
@@ -136,7 +136,7 @@ function write_json_to_file(json_to_file){
     console.log("write_json_to_file called");
     return new Promise(function (resolve,reject){
 
-        // console.log("Reading in .json..... from file: ", file);
+        // console.log("Reading in .json..... from compiled_file: ", compiled_file);
         com_path = '../output/deployed/' +'instance_of_'+ file;
 
         jsonfile.writeFile(com_path, json_to_file, callback);
@@ -145,7 +145,7 @@ function write_json_to_file(json_to_file){
             if (e) {
                 reject("write_json_to_file error");
             } else {
-                console.log(" ---> json written to file\n");
+                console.log(" ---> json written to compiled_file\n");
                 resolve("success !!!");
             }
         }

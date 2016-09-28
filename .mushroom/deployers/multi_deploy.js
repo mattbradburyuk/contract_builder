@@ -57,7 +57,7 @@ return;
 
 
 
-// var file = options.file;
+// var compiled_file = options.compiled_file;
 
 read_in_json()
     .then(unlock_acc)
@@ -78,7 +78,7 @@ function read_in_json(){
         var file = contract_config.compiler_output_file_to_deploy;
         var file_path = root + mushroom_config.structure.compiler_output_directory + file
         
-        console.log(" ---> Reading in json from compiled file:", file);
+        console.log(" ---> Reading in json from compiled compiled_file:", file);
         
         jsonfile.readFile(file_path, callback);
 
@@ -152,7 +152,7 @@ function deploy_contracts(json){
         Promise.all(proms).then(collect_json_returns).then(resolve,reject);
 
 
-        // collects return values from Promise.all and creates json to be written to the deployed file
+        // collects return values from Promise.all and creates json to be written to the deployed compiled_file
 
         function collect_json_returns(return_arr){
 
@@ -219,7 +219,7 @@ function write_json_to_file(json_to_file){
             if (e) {
                 reject(e);
             } else {
-                console.log(" ---> json written to file\n");
+                console.log(" ---> json written to compiled_file\n");
                 resolve("success !!!");
             }
         }

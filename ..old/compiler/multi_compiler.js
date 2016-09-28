@@ -21,8 +21,8 @@ var files_to_compile = require("./files_to_compile.js");
 // ************* read in commandline options
 
 var cli = commandLineArgs([
-    {name: 'file', alias: 'f', type: String, defaultValue: 'all', description: 'single file to compile'},
-    {name: 'output_file', alias: 'o', type: String, defaultValue: 'compiled_contract', description: 'name of output file '}
+    {name: 'compiled_file', alias: 'f', type: String, defaultValue: 'all', description: 'single compiled_file to compile'},
+    {name: 'output_file', alias: 'o', type: String, defaultValue: 'compiled_contract', description: 'name of output compiled_file '}
 ]);
 
 var options;
@@ -50,11 +50,11 @@ var solc_input = {};
 
 for (i = 0; i < num_files; i++ ){
     var file_path = files_to_compile.path + files_to_compile.files[i];
-    // console.log("file",i, ":",file_path);
+    // console.log("compiled_file",i, ":",compiled_file);
 
-    //check the file is a .sol
+    //check the compiled_file is a .sol
     if (check_sol(file_path)==false) {
-        console.log(file_path, ": file not .sol");
+        console.log(file_path, ": compiled_file not .sol");
         return;
     }
 
@@ -77,7 +77,7 @@ for (var contractName in output.contracts)
     console.log(contractName + ': ' + output.contracts[contractName].bytecode);
 
 
-// ********** write to .json file ************
+// ********** write to .json compiled_file ************
 
 
 var com_path = '../output/compiled/' + options.output_file +'.json';
@@ -98,7 +98,7 @@ function check_sol(file){
 }
 
 
-// ************* Collapse .sol file *****************
+// ************* Collapse .sol compiled_file *****************
 
 function collapse(path){
     console.log("Collapsing: ", path);
@@ -108,7 +108,7 @@ function collapse(path){
     }
     catch(e){
         console.log(JSON.stringify(e))
-        throw "cannot read file";
+        throw "cannot read compiled_file";
     }
 
     var code = data.toString();

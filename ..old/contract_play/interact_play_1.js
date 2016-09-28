@@ -13,7 +13,7 @@ var jsonfile = require("jsonfile");
 // ************* read in commandline options
 
 var cli = commandLineArgs([
-    {name: 'file', alias: 'f', type: String, defaultValue: 'all', description: 'file to compile'}
+    {name: 'compiled_file', alias: 'f', type: String, defaultValue: 'all', description: 'compiled_file to compile'}
 ]);
 
 try{
@@ -72,7 +72,7 @@ function read_in_compiled_json(){
     console.log("read_in_compiled_json called");
     return new Promise(function(resolve,reject){
 
-        console.log(" ---> Reading in .json..... from file: ", compiled_file_path);
+        console.log(" ---> Reading in .json..... from compiled_file: ", compiled_file_path);
 
         jsonfile.readFile(compiled_file_path, callback);
 
@@ -93,7 +93,7 @@ function read_in_deployed_json(){
     console.log("read_in_deployed_json called");
     return new Promise(function(resolve,reject){
 
-        console.log(" ---> Reading in .json..... from file: ", deployed_file_path);
+        console.log(" ---> Reading in .json..... from compiled_file: ", deployed_file_path);
 
         jsonfile.readFile(deployed_file_path, callback);
 

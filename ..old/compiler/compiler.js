@@ -18,7 +18,7 @@ var jsonfile = require("jsonfile");
 // ************* read in commandline options
 
 var cli = commandLineArgs([
-    {name: 'file', alias: 'f', type: String, defaultValue: 'all', description: 'file to compile'}
+    {name: 'compiled_file', alias: 'f', type: String, defaultValue: 'all', description: 'compiled_file to compile'}
 ]);
 
 try{
@@ -42,9 +42,9 @@ if (options.file == 'all'){
     var file = options.file;
     var path = '../source/' + file;
     
-    //check the file is a .sol
+    //check the compiled_file is a .sol
     if (check_sol(file)==false) {
-        console.log("file not .sol");
+        console.log("compiled_file not .sol");
         return;
     }
         
@@ -60,13 +60,13 @@ if (options.file == 'all'){
 
     console.log("solc_output: ", output);
     
-    // write to .json file
+    // write to .json compiled_file
     com_path = '../output/compiled/' + contract_name +'.json';
     
     console.log("com_path: ", com_path);
     jsonfile.writeFileSync(com_path, output.contracts[contract_name]);
     
-    // check file output
+    // check compiled_file output
     // console.log(jsonfile.readFileSync(com_path))
     
 }
@@ -82,7 +82,7 @@ function check_sol(file){
 }
 
 
-// ************* Collapse .sol file *****************
+// ************* Collapse .sol compiled_file *****************
 
 function collapse(path){
     console.log("Collapsing: ", path);
@@ -92,7 +92,7 @@ function collapse(path){
     }
     catch(e){
         console.log(JSON.stringify(e))
-        throw "cannot read file";
+        throw "cannot read compiled_file";
     }
     
     var code = data.toString();

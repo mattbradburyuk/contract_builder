@@ -12,7 +12,7 @@ var jsonfile = require("jsonfile");
 
 // ********* get the config files  ************
 
-// note, as mushroom.js is in the root of the project the cwd() will always return the root so can use it to get to the .mushroom_config.js file
+// note, as mushroom.js is in the root of the project the cwd() will always return the root so can use it to get to the .mushroom_config.js compiled_file
 
 var root = process.cwd();
 
@@ -36,11 +36,11 @@ for (i = 0; i < num_files; i++ ){
     
     var file = contract_config.files_to_compile[i];
     var file_path = root + mushroom_config.structure.source_directory + file;
-    // console.log("file_path: ",i, ":",file_path);
+    // console.log("compiled_file: ",i, ":",compiled_file);
 
-    //check the file is a .sol
+    //check the compiled_file is a .sol
     if (check_sol(file)==false) {
-        console.log("error:", file, " not .sol file");
+        console.log("error:", file, " not .sol compiled_file");
         return;
     }
     collapsed[i] = collapse(file_path);
@@ -61,7 +61,7 @@ var output = solc.compile({sources: solc_input},1);
 for (var contractName in output.contracts)
     console.log(contractName + ': ' + output.contracts[contractName].interface);
 
-// ********** write output to .json file ************
+// ********** write output to .json compiled_file ************
 
 var com_path = root + mushroom_config.structure.compiler_output_directory + contract_config.compiler_output_file;
 console.log(" --> writing compiled contracts to: ", com_path);
@@ -81,7 +81,7 @@ function check_sol(file){
 }
 
 
-// ************* Collapse .sol file *****************
+// ************* Collapse .sol compiled_file *****************
 
 function collapse(path){
     console.log(" ---> collapsing: ", path);
@@ -91,7 +91,7 @@ function collapse(path){
     }
     catch(e){
         console.log(JSON.stringify(e))
-        throw " ---> cannot read file";
+        throw " ---> cannot read compiled_file";
     }
 
     var code = data.toString();

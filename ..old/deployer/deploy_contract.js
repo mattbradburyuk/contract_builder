@@ -9,7 +9,7 @@ var jsonfile = require("jsonfile");
 // ************* read in commandline options
 
 var cli = commandLineArgs([
-    {name: 'file', alias: 'f', type: String, defaultValue: 'all', description: 'file to compile'}
+    {name: 'compiled_file', alias: 'f', type: String, defaultValue: 'all', description: 'compiled_file to compile'}
 ]);
 
 try{
@@ -42,7 +42,7 @@ console.log("Reading in .json.....");
 
 var file = options.file;
 
-// read in from .json file
+// read in from .json compiled_file
 com_path = '../output/compiled/' + file;
 var contract_json = jsonfile.readFileSync(com_path);
 
@@ -100,11 +100,11 @@ contract_obj.new(
                 console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
                 var fs = require('fs');
 
-                console.log("file: ",file);
+                console.log("compiled_file: ",file);
                 
                 var json_to_file = {"address": contract.address, "tx_hash": contract.transactionHash}; 
                 
-                // write to .json file
+                // write to .json compiled_file
                 com_path = '../output/deployed/' +'instance_of_'+ file;
                 jsonfile.writeFileSync(com_path, json_to_file);
                 
