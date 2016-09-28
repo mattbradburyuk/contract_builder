@@ -1,32 +1,8 @@
 // generates helper functions for deployed contracts
 
 
-/*
- // **************** plan (out of date) ******************
 
- 1) read in header file to set up requires and web3
-
- 2) Read in contract details from compiled:
- - contract names
- - contract methods
- - number of arguments for each
- - type of method (constant, etc...)
-
- For each contract
-
- 3) Generate contract class with properties:
- - web3 contract object
- - deployed address
- - tx_receipt
- - other??
-
- 4) for each method append the methods onto the prototype
-
- */
-
-
-
-console.log("helper_generator called...");
+console.log("helper_generator.js called...\n");
 
 // ************ imports **************
 
@@ -74,7 +50,8 @@ for (var i in compiled_contracts_json){
     compiled_contracts_names.push(i)
 }
 
-console.log("compiled_contract_names:", compiled_contracts_names)
+console.log("Compiled contracts:")
+console.log(" ---> ", compiled_contracts_names)
 
 // ********** get json of deployed contracts ****************
 
@@ -87,11 +64,11 @@ for (var i in deployed_json.contracts) {
     deployed_contracts_names[i] = deployed_json.contracts[i].name
 }
 
-console.log("deployed_contracts_names", deployed_contracts_names)
+console.log("\nDeployed contracts:")
+console.log(" ---> ",deployed_contracts_names )
 
 
-
-// *********** only produce helper if contract has been both compiled and deployed ************
+// *********** only produce helpers if contract has been both compiled and deployed ************
 
 
 for (var i in compiled_contracts_names) {
@@ -109,15 +86,17 @@ function make_helper_for_contract(contract_name) {
     var contract = compiled_contracts_json[contract_name]
     var iface = JSON.parse(contract.interface)      // note interface appears to be in a string rather than json so need to parse
 
-    console.log("contract_name: ", contract_name)
+    console.log("\nBuilding helper for", contract_name, "...")
     // console.log("contract: ",contract)
+
 
 
     // ********* set output file ***************
 
     var output_file = process.cwd() + mushroom_config.structure.helper_output_directory + contract_name + '_helper.js'
 
-    console.log("output_file: ", output_file)
+    console.log(" ---> output_file: ", contract_name + '_helper.js')
+
 
 
     // ********* read in and customise header ****************
@@ -131,25 +110,20 @@ function make_helper_for_contract(contract_name) {
     header_str = header_str.replace(/sub_geth_host_port/g, host_ip);
 
 
-    // ********** get deployed address ***********************
 
-    // var deployed_file = process.cwd() + mushroom_config.structure.deployer_output_directory + 'deployed_instances.json'
-    //
-    // var deployed_json_str = fs.readFileSync(deployed_file).toString()
-    //
-    // var deployed_json = JSON.parse(deployed_json_str);
+    // ********** get deployed address ***********************
 
     var contract_ind
     for (var i in deployed_json.contracts) {
-        console.log("i: ", i)
         if (deployed_json.contracts[i].name == contract_name) {
-            console.log("contract_name: ", contract_name)
+            // console.log("contract_name: ", contract_name)
             contract_ind = i;
         }
     }
 
     var deployed_address = deployed_json.contracts[contract_ind].details.address
-    console.log("deployed address: ", deployed_address)
+    console.log(" ---> deployed address: ", deployed_address)
+
 
 
     // ********** read in and customise module vars *************
@@ -162,12 +136,14 @@ function make_helper_for_contract(contract_name) {
     module_vars_str = module_vars_str.replace(/sub_address/g, deployed_address)
 
 
+
     // ********** get number of methods in contract and generate method calls********************
 
     // console.log("contract: ", contract)
 
     var num_methods = iface.length
-    console.log("num_methods: ", num_methods, "\n")
+    console.log(" ---> num_methods: ", num_methods)
+    console.log(" ---> methods:")
 
     var method_strs = [];
 
@@ -177,7 +153,7 @@ function make_helper_for_contract(contract_name) {
         // console.log("method: ",method)
 
         var method_name = method.name;
-        console.log("method_name: ", method_name)
+        console.log("      ---> ", method_name)
 
         if (method_name == undefined) {
             break;
@@ -185,7 +161,7 @@ function make_helper_for_contract(contract_name) {
 
 
         var num_args = method.inputs.length
-        console.log("num_args", num_args)
+        // console.log("num_args", num_args)
 
         var arg_str = '';
         var arg_log_str = ''
@@ -244,6 +220,8 @@ function make_helper_for_contract(contract_name) {
     fs.writeFileSync(output_file, output_str);
 
 }
+
+console.log("\n\n ***** Add message about how to use *****")
 
 
 

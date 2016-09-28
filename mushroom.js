@@ -27,9 +27,9 @@ switch(command){
         require(deployer);
         break;
 
-    case 'helper':
+    case 'helpers':
         var helper_generator = process.cwd() + config.structure.helper_generator_location + config.structure.helper_generator;
-        console.log("Generating helper.js");
+        console.log("Generating <contracts>_helpers.js ...\n");
         require(helper_generator);
         break;
     

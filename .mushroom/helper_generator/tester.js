@@ -13,11 +13,11 @@ web3.setProvider(new web3.providers.HttpProvider(url));
 var rpc_client = jayson.client.http(url);
 
 
-// ************ import helper to test ******************
+// ************ import helpers to test ******************
 
 
-// var helper_file = '../../output/helper/Base_contract_helper.js'
-var helper_file = '../../output/helper/Child_contract_helper.js'
+// var helper_file = '../../output/helpers/Base_contract_helper.js'
+var helper_file = '../../output/helpers/Child_contract_helper.js'
 
 
 

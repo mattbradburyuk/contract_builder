@@ -16,7 +16,7 @@ module.exports = {
 
         helper_generator: "helper_generator.js",
         helper_generator_location: "/.mushroom/helper_generator/",
-        helper_output_directory: "/output/helper/",
+        helper_output_directory: "/output/helpers/",
         
         contract_config: "contract_config.js",
         contract_config_location: "/config/"
