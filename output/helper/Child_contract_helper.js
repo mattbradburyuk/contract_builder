@@ -13,8 +13,8 @@ web3.setProvider(new web3.providers.HttpProvider(url));
 
 // ******** module variables (closed over when module required - I think) ************
 
-var abi = JSON.parse('[{"constant":false,"inputs":[{"name":"val","type":"uint256"}],"name":"set_child_value","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"get_base_value","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"val","type":"uint256"}],"name":"set_base_value","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"get_child_value","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"get_grandchild_value","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"inputs":[],"type":"constructor"}]');
-var address = '0x1ad94cb7d74cd2af3f3478bc99eba3435077b62b';
+var abi = JSON.parse('[{"constant":false,"inputs":[{"name":"val","type":"uint256"}],"name":"set_child_value","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"get_base_value","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"val","type":"uint256"}],"name":"set_base_value","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"get_child_value","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"inputs":[],"type":"constructor"}]');
+var address = '0xe0ac4e86cd356d241a27cc3fe07c3faf226788fa';
 var contract = web3.eth.contract(abi).at(address);
 
 function Contract(){
@@ -152,29 +152,6 @@ Contract.get_child_value = function (args) {
                 reject(e);
             } else {
                 console.log(" ---> get_child_value response: ", response)
-                resolve(response)
-            }
-        }
-    });
-};
-
-
-// ********* get_grandchild_value - Call **********
-
-Contract.get_grandchild_value = function (args) {
-
-    console.log("\nget_grandchild_value called")
-    console.log(" ---> args[0]:", args[0])
-
-    return new Promise(function (resolve, reject) {
-
-        contract.get_grandchild_value.call(args[0], callback);
-
-        function callback(e,response) {
-            if (e) {
-                reject(e);
-            } else {
-                console.log(" ---> get_grandchild_value response: ", response)
                 resolve(response)
             }
         }

@@ -52,11 +52,11 @@ var set_args_tx = function () {
 toggle_mining_on()
     .then(unlock_acc)
     .then(set_args_call)
-    .then(myContract.get_base_value)
+    .then(myContract.get_child_value)
     .then(set_args_tx)
-    .then(myContract.set_base_value)
+    .then(myContract.set_child_value)
     .then(set_args_call)
-    .then(myContract.get_base_value)
+    .then(myContract.get_child_value)
     .then(toggle_mining_off)
     .then(end_success,end_error);
 

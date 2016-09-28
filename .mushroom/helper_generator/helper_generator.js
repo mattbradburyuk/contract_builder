@@ -81,17 +81,17 @@ console.log("contract_names:", contract_names)
 // *********** picking one contract to make a helper file for ***********
 
 
-var contract_name = contract_names[2]
+var contract_name = contract_names[1]
 var contract = contracts_json[contract_name]
 var iface = JSON.parse(contract.interface)      // note interface appears to be in a string rather than json so need to parse
 
 console.log("contract_name: ",contract_name)
-console.log("contract: ",contract)
+// console.log("contract: ",contract)
 
 
 // ********* set output file ***************
 
-var output_file = process.cwd() + mushroom_config.structure.helper_output_directory + contract_name + '_' + mushroom_config.structure.helper_file
+var output_file = process.cwd() + mushroom_config.structure.helper_output_directory + contract_name + '_helper.js'
 
 console.log("output_file: ", output_file)
 

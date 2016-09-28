@@ -13,4 +13,8 @@ contract Child_contract is Base_contract {
     function get_child_value() constant returns (uint){
         return child_value;
     }
+
+    function set_child_value(uint val) {
+        child_value = val;
+    }
 }
