@@ -37,9 +37,10 @@ var set_args_call = function () {
     });
 }
 
-var set_args_tx = function () {
+var set_args_tx = function (val) {
     return new Promise(function (resolve, reject) {
-        var args = [456,{from: web3.eth.coinbase}];
+
+        var args = [val.plus(1),{from: web3.eth.coinbase}]; // increment stored value by 1
         resolve(args)
     });
 }
