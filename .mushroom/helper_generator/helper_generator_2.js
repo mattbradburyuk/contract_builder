@@ -169,7 +169,7 @@ for (var i =0; i<num_methods; i++){
 
     for (var j = 0;j< (num_args+1); j++){
         arg_str = arg_str + 'args[' + j +  '],';
-        arg_log_str = arg_log_str + '\"\\n ---> args[' + j + ']:\", args[' +j + '],'
+        arg_log_str = arg_log_str + '\" ---> args[' + j + ']:\", args[' +j + '],'
 
     }
 
@@ -181,7 +181,17 @@ for (var i =0; i<num_methods; i++){
 
 
     // read in helper_method template
-    var method_file = process.cwd() + mushroom_config.structure.helper_generator_location + 'helper_template_method_sendtx.js';
+
+    var method_file;
+
+    if (method.constant){
+        method_file = process.cwd() + mushroom_config.structure.helper_generator_location + 'helper_template_method_call.js';
+
+    }else {
+
+        method_file = process.cwd() + mushroom_config.structure.helper_generator_location + 'helper_template_method_sendtx.js';
+    }
+
 
     // need array of strings for each method
     method_strs[i] = fs.readFileSync(method_file).toString();

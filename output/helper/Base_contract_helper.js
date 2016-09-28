@@ -35,51 +35,35 @@ Contract.get_contract = function(){
 }
 
 
-// ********* get_base_value **********
+// ********* get_base_value - Call **********
 
 Contract.get_base_value = function (args) {
-        
-        console.log("get_base_value called")
-        console.log("\n ---> args[0]:", args[0])
 
-        return new Promise(function (resolve, reject) {
+    console.log("\nget_base_value called")
+    console.log(" ---> args[0]:", args[0])
 
-            contract.get_base_value.sendTransaction(args[0], callback);
+    return new Promise(function (resolve, reject) {
 
-            var timer;
+        contract.get_base_value.call(args[0], callback);
 
-            function callback(e,tx_ref) {
-                if (e) {
-                    reject(e);
-                } else {
-                    console.log(" ---> tx_ref:", tx_ref)
-                    timer = setInterval(check_mined, 500, tx_ref)
-
-                }
+        function callback(e,response) {
+            if (e) {
+                reject(e);
+            } else {
+                console.log(" ---> get_base_value response: ", response)
+                resolve(response)
             }
-
-            function check_mined(tx_ref) {
-                // console.log("tx_ref in check_mined:", tx_ref);
-                var tx = web3.eth.getTransaction(tx_ref.toString());
-                // console.log("tx.blockNumber: ", tx.blockNumber);
-
-                if(tx.blockNumber != null) {
-                    console.log(" ---> tx mined in block: ", tx.blockNumber);
-                    clearInterval(timer);
-                    resolve(tx_ref);
-                }
-            }
-
-        });
+        }
+    });
 };
 
 
-// ********* set_base_value **********
+// ********* set_base_value - send_tx **********
 
 Contract.set_base_value = function (args) {
         
-        console.log("set_base_value called")
-        console.log("\n ---> args[0]:", args[0],"\n ---> args[1]:", args[1])
+        console.log("\nset_base_value called")
+        console.log(" ---> args[0]:", args[0]," ---> args[1]:", args[1])
 
         return new Promise(function (resolve, reject) {
 

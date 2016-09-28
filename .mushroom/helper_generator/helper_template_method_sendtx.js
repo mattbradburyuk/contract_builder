@@ -1,8 +1,8 @@
-// ********* sub_method **********
+// ********* sub_method - send_tx **********
 
 Contract.sub_method = function (args) {
         
-        console.log("sub_method called")
+        console.log("\nsub_method called")
         console.log(sub_log_args)
 
         return new Promise(function (resolve, reject) {

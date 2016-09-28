@@ -24,16 +24,49 @@ var myContract = require(helper_file)
 // console.log("myContract.get_contract: ", myContract.get_contract());
 
 
-var args = [123,{from: web3.eth.coinbase}];
+// var args = [456,{from: web3.eth.coinbase}];
+var args ={};
 
 // var args = [{from: "0xc80476e69d705adf704b4e20f5609b2def655a36"}];
 
-toggle_mining_on(args)
+
+var set_args_call = function () {
+    return new Promise(function (resolve, reject) {
+        var args = [{from: web3.eth.coinbase}];
+        resolve(args)
+    });
+}
+var set_args_tx = function () {
+    return new Promise(function (resolve, reject) {
+        var args = [123,{from: web3.eth.coinbase}];
+        resolve(args)
+    });
+}
+
+
+
+toggle_mining_on()
     .then(unlock_acc)
+    .then(set_args_call)
+    .then(myContract.get_base_value)
+    .then(set_args_tx)
     .then(myContract.set_base_value)
-    // // .then(wait_2000)
+    .then(set_args_call)
+    .then(myContract.get_base_value)
     .then(toggle_mining_off)
     .then(end_success,end_error);
+
+
+// toggle_mining_on(args)
+//     .then(unlock_acc)
+//     .then(myContract.set_base_value)
+//     .then(toggle_mining_off)
+//     .then(end_success,end_error);
+
+
+
+
+
 
 
 
