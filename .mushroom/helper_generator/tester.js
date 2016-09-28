@@ -17,7 +17,7 @@ var rpc_client = jayson.client.http(url);
 
 
 // var helper_file = '../../output/helper/Base_contract_helper.js'
-var helper_file = '../../output/helper/Grandchild_contract_helper.js'
+var helper_file = '../../output/helper/Child_contract_helper.js'
 
 
 

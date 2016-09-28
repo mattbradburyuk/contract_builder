@@ -60,71 +60,84 @@ var rpc_client = jayson.client.http(url);
 
 
 
-// ********** Read in contract details *************
+// ********** Read in compiled contract details *************
 
 
 var file = contract_config.compiler_output_file_to_deploy;
 var file_path = root + mushroom_config.structure.compiler_output_directory + file
 
 var compiled_output_json = jsonfile.readFileSync(file_path);
-var contracts_json = compiled_output_json.contracts
-var contract_names = [];
+var compiled_contracts_json = compiled_output_json.contracts
+var compiled_contracts_names = [];
 
-for (var i in contracts_json){
-    contract_names.push(i)
+for (var i in compiled_contracts_json){
+    compiled_contracts_names.push(i)
 }
 
-console.log("contract_names:", contract_names)
+console.log("compiled_contract_names:", compiled_contracts_names)
+
+// ********** get json of deployed contracts ****************
+
+var deployed_file = process.cwd() + mushroom_config.structure.deployer_output_directory + 'deployed_instances.json'
+var deployed_json_str = fs.readFileSync(deployed_file).toString()
+var deployed_json = JSON.parse(deployed_json_str);
+var deployed_contracts_names = []
+
+for (var i in deployed_json.contracts) {
+    deployed_contracts_names[i] = deployed_json.contracts[i].name
+}
+
+console.log("deployed_contracts_names", deployed_contracts_names)
 
 
 
-// *********** picking one contract to make a helper file for ***********
+// *********** only produce helper if contract has been both compiled and deployed ************
 
 
-var contract_name = contract_names[2]
+for (var i in compiled_contracts_names) {
 
-for (var i in contract_names) {
+    if (i in deployed_contracts_names){
 
-    make_helper_for_contract(contract_names[i])
-
+        make_helper_for_contract(compiled_contracts_names[i])
+    }
 }
 
 
 function make_helper_for_contract(contract_name) {
 
 
-    var contract = contracts_json[contract_name]
+    var contract = compiled_contracts_json[contract_name]
     var iface = JSON.parse(contract.interface)      // note interface appears to be in a string rather than json so need to parse
 
     console.log("contract_name: ", contract_name)
-// console.log("contract: ",contract)
+    // console.log("contract: ",contract)
 
 
-// ********* set output file ***************
+    // ********* set output file ***************
 
     var output_file = process.cwd() + mushroom_config.structure.helper_output_directory + contract_name + '_helper.js'
 
     console.log("output_file: ", output_file)
 
 
-// ********* read in and customise header ****************
+    // ********* read in and customise header ****************
 
-// read in header_template
+    // read in header_template
     var header_file = process.cwd() + mushroom_config.structure.helper_generator_location + 'helper_template_header.js';
     var header_str = fs.readFileSync(header_file).toString();
 
-// get host:ip from config and substitute
+    // get host:ip from config and substitute
     var host_ip = '\"http://' + mushroom_config.rpc.host + ":" + mushroom_config.rpc.port + '\"';
     header_str = header_str.replace(/sub_geth_host_port/g, host_ip);
 
 
-// ********** get deployed address ***********************
+    // ********** get deployed address ***********************
 
-    var deployed_file = process.cwd() + mushroom_config.structure.deployer_output_directory + 'deployed_instances.json'
-
-    var deployed_json_str = fs.readFileSync(deployed_file).toString()
-
-    var deployed_json = JSON.parse(deployed_json_str);
+    // var deployed_file = process.cwd() + mushroom_config.structure.deployer_output_directory + 'deployed_instances.json'
+    //
+    // var deployed_json_str = fs.readFileSync(deployed_file).toString()
+    //
+    // var deployed_json = JSON.parse(deployed_json_str);
 
     var contract_ind
     for (var i in deployed_json.contracts) {
@@ -139,9 +152,9 @@ function make_helper_for_contract(contract_name) {
     console.log("deployed address: ", deployed_address)
 
 
-// ********** read in and customise module vars *************
+    // ********** read in and customise module vars *************
 
-// read in helper_object_def template
+    // read in helper_object_def template
     var module_vars_file = process.cwd() + mushroom_config.structure.helper_generator_location + 'helper_template_module_vars.js';
     var module_vars_str = fs.readFileSync(module_vars_file).toString();
 
@@ -149,9 +162,9 @@ function make_helper_for_contract(contract_name) {
     module_vars_str = module_vars_str.replace(/sub_address/g, deployed_address)
 
 
-// ********** get number of methods in contract and generate method calls********************
+    // ********** get number of methods in contract and generate method calls********************
 
-// console.log("contract: ", contract)
+    // console.log("contract: ", contract)
 
     var num_methods = iface.length
     console.log("num_methods: ", num_methods, "\n")
@@ -186,8 +199,8 @@ function make_helper_for_contract(contract_name) {
         arg_str = arg_str.slice(0, arg_str.length - 1)
         arg_log_str = arg_log_str.slice(0, arg_log_str.length - 1)
 
-        console.log("arg_str: ", arg_str)
-        console.log("log_arg_str: ", arg_log_str, "\n")
+        // console.log("arg_str: ", arg_str)
+        // console.log("log_arg_str: ", arg_log_str, "\n")
 
 
         // read in helper_method template
@@ -221,7 +234,8 @@ function make_helper_for_contract(contract_name) {
     }
 
 
-//  **********  create module.exports str *************
+    //  **********  create module.exports str *************
+
     var exports_str = 'module.exports = Contract;';
 
 
