@@ -14,34 +14,37 @@ web3.setProvider(new web3.providers.HttpProvider(url));
 // ******** module variables (closed over when module required - I think) ************
 
 var abi = JSON.parse('[{"constant":true,"inputs":[],"name":"get_base_value","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"val","type":"uint256"}],"name":"set_base_value","outputs":[],"payable":false,"type":"function"},{"inputs":[],"type":"constructor"}]');
-var address = '0xf6d0abc5bd183201a4845dc22733ad1cbf46180c';
+var address = '0x1ee28e05d9c696ba10ffa71352721da45cf93c4f';
 var contract = web3.eth.contract(abi).at(address);
 
+function Contract(){
 
-sub_class.get_abi = function(){
+}
+
+Contract.get_abi = function(){
     return abi
 }
 
-sub_class.get_address = function(){
+Contract.get_address = function(){
 
     return address
 }
 
-sub_class.get_contract = function(){
+Contract.get_contract = function(){
     return contract
 }
 
 
 // ********* get_base_value **********
 
-sub_class.get_base_value = function (args) {
+Contract.get_base_value = function (args) {
         
         console.log("get_base_value called")
         console.log("\n ---> args[0]:", args[0])
 
         return new Promise(function (resolve, reject) {
 
-            contract.get_base_value.sendTransaction(arg[0], callback);
+            contract.get_base_value.sendTransaction(args[0], callback);
 
             var timer;
 
@@ -73,14 +76,14 @@ sub_class.get_base_value = function (args) {
 
 // ********* set_base_value **********
 
-sub_class.set_base_value = function (args) {
+Contract.set_base_value = function (args) {
         
         console.log("set_base_value called")
         console.log("\n ---> args[0]:", args[0],"\n ---> args[1]:", args[1])
 
         return new Promise(function (resolve, reject) {
 
-            contract.set_base_value.sendTransaction(arg[0],arg[1], callback);
+            contract.set_base_value.sendTransaction(args[0],args[1], callback);
 
             var timer;
 
@@ -110,3 +113,4 @@ sub_class.set_base_value = function (args) {
 };
 
 
+module.exports = Contract;

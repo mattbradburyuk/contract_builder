@@ -168,7 +168,7 @@ for (var i =0; i<num_methods; i++){
     var arg_log_str = ''
 
     for (var j = 0;j< (num_args+1); j++){
-        arg_str = arg_str + 'arg[' + j +  '],';
+        arg_str = arg_str + 'args[' + j +  '],';
         arg_log_str = arg_log_str + '\"\\n ---> args[' + j + ']:\", args[' +j + '],'
 
     }
@@ -202,14 +202,14 @@ for (var i in method_strs){
 
 
 //  **********  create module.exports str *************
-var exports_str = 'module.exports = + Contract;';
+var exports_str = 'module.exports = Contract;';
 
 
 
 
 
 
-var output_str = header_str + module_vars_str + method_str
+var output_str = header_str + module_vars_str + method_str + exports_str
 
 fs.writeFileSync(output_file, output_str);
 

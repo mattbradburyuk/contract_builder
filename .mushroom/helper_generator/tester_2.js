@@ -24,15 +24,14 @@ var myContract = require(helper_file)
 // console.log("myContract.get_contract: ", myContract.get_contract());
 
 
+var args = [123,{from: web3.eth.coinbase}];
 
-
-var args = [123,{from: "0xc80476e69d705adf704b4e20f5609b2def655a36"}];
-
+// var args = [{from: "0xc80476e69d705adf704b4e20f5609b2def655a36"}];
 
 toggle_mining_on(args)
     .then(unlock_acc)
     .then(myContract.set_base_value)
-    // .then(wait_2000)
+    // // .then(wait_2000)
     .then(toggle_mining_off)
     .then(end_success,end_error);
 

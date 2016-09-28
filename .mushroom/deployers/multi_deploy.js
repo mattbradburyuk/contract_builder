@@ -174,7 +174,7 @@ function deploy_contract(contract_json){
     return new Promise(function(resolve,reject) {
 
         var iface = JSON.parse(contract_json.interface);    // interface needs to be in JSON not a string
-        console.log("interface: ", iface);
+        // console.log("interface: ", iface);
 
         var bc = contract_json.bytecode;
         // console.log("bytecode: ", bc);

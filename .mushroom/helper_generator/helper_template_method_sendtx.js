@@ -1,6 +1,6 @@
 // ********* sub_method **********
 
-sub_class.sub_method = function (args) {
+Contract.sub_method = function (args) {
         
         console.log("sub_method called")
         console.log(sub_log_args)
