@@ -1,9 +1,6 @@
 // generates helper functions for deployed contracts
 
 
-
-console.log("helper_generator.js called...\n");
-
 // ************ imports **************
 
 var fs = require('fs');
@@ -209,7 +206,7 @@ function make_helper_for_contract(contract_name) {
     var exports_str = 'module.exports = Contract;';
 
 
-    //  *********** create and write the complete output string to the output file ***********
+    //  *********** create and write the complete output string to the output file_to_compile ***********
 
     var output_str = header_str + module_vars_str + method_str + exports_str
 
@@ -217,7 +214,7 @@ function make_helper_for_contract(contract_name) {
 
 }
 
-console.log("\n\n ***** Add message about how to use *****")
+// console.log("\n\n ***** Add message about how to use *****")
 
 
 

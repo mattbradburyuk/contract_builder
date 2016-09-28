@@ -1,7 +1,5 @@
 // note this script deliberately uses synchronous calls to run through like a script.
 
-console.log("Compiler called...");
-
 // *********** import requirements  ***********
 
 var decomment = require('decomment');
@@ -26,6 +24,8 @@ var contract_config = require(cc_path)
 
 // *********** get files and make input  *********
 
+console.log("Collapsing and Compiling contracts:")
+
 var num_files = contract_config.files_to_compile.length;
 // console.log("num_file: ", num_files);
 
@@ -34,13 +34,13 @@ var solc_input = {};
 
 for (i = 0; i < num_files; i++ ){
     
-    var file = contract_config.files_to_compile[i];
-    var file_path = root + mushroom_config.structure.source_directory + file;
+    var file_to_compile = contract_config.files_to_compile[i];
+    var file_path = root + mushroom_config.structure.source_directory + file_to_compile;
     // console.log("compiled_file: ",i, ":",compiled_file);
 
     //check the compiled_file is a .sol
-    if (check_sol(file)==false) {
-        console.log("error:", file, " not .sol compiled_file");
+    if (check_sol(file_to_compile)==false) {
+        console.log("error:", file_to_compile, " not .sol compiled_file");
         return;
     }
     collapsed[i] = collapse(file_path);
@@ -50,27 +50,24 @@ for (i = 0; i < num_files; i++ ){
 // console.log("\nsolc_input:", solc_input, "\n\n");
 
 
+
 // ******** compile solc_input  **************
 
-console.log(" ---> compiling...");
+
 
 var output = solc.compile({sources: solc_input},1);
 
 // console.log("output:", output);
 
 for (var contractName in output.contracts)
-    console.log(contractName + ': ' + output.contracts[contractName].interface);
-
+    // console.log(contractName + ': ' + output.contracts[contractName].interface);
+    console.log(' ---> ', contractName + ': Compiled')
 // ********** write output to .json compiled_file ************
 
 var com_path = root + mushroom_config.structure.compiler_output_directory + contract_config.compiler_output_file;
-console.log(" --> writing compiled contracts to: ", com_path);
+console.log("\nWriting compiled contracts to: ");
+console.log(" ---> ", contract_config.compiler_output_file);
 jsonfile.writeFileSync(com_path, output);
-
-
-
-console.log("\n *********  end of script **********");
-
 
 
 
@@ -84,7 +81,7 @@ function check_sol(file){
 // ************* Collapse .sol compiled_file *****************
 
 function collapse(path){
-    console.log(" ---> collapsing: ", path);
+    // console.log(" ---> collapsing: ", path);
 
     try {
         var data = fs.readFileSync(path);
