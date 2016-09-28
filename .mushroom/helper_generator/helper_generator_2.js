@@ -60,13 +60,6 @@ var rpc_client = jayson.client.http(url);
 
 
 
-
-
-
-
-
-
-
 // ********** Read in contract details *************
 
 
@@ -80,6 +73,7 @@ var contract_names = [];
 for (var i in contracts_json){
     contract_names.push(i)
 }
+
 
 
 // *********** picking one contract to make a helper file for ***********
@@ -96,6 +90,7 @@ var iface = JSON.parse(contract.interface)      // note interface appears to be 
 var output_file = process.cwd() + mushroom_config.structure.helper_output_directory + contract_name + '_' + mushroom_config.structure.helper_file
 
 console.log("output_file: ", output_file)
+
 
 
 // ********* read in and customise header ****************
@@ -142,12 +137,15 @@ module_vars_str = module_vars_str.replace(/sub_abi/g, JSON.stringify(iface));
 module_vars_str = module_vars_str.replace(/sub_address/g, deployed_address)
 
 
-// ********** get number of methods in contract ********************
+
+// ********** get number of methods in contract and generate method calls********************
 
 // console.log("contract: ", contract)
 
 var num_methods = iface.length
-console.log("num_methods: ", num_methods)
+console.log("num_methods: ", num_methods,"\n")
+
+var method_strs = [];
 
 for (var i =0; i<num_methods; i++){
 
@@ -156,6 +154,12 @@ for (var i =0; i<num_methods; i++){
 
     var method_name = method.name;
     console.log("method_name: ", method_name)
+
+    if (method_name == undefined)
+    {
+        break;
+    }
+
 
     var num_args = method.inputs.length
     console.log("num_args", num_args)
@@ -173,63 +177,52 @@ for (var i =0; i<num_methods; i++){
     arg_log_str = arg_log_str.slice(0,arg_log_str.length-1)
 
     console.log("arg_str: ", arg_str)
-    console.log("log_arg_str: ", arg_log_str)
+    console.log("log_arg_str: ", arg_log_str, "\n")
+
+
+    // read in helper_method template
+    var method_file = process.cwd() + mushroom_config.structure.helper_generator_location + 'helper_template_method_sendtx.js';
+
+    // need array of strings for each method
+    method_strs[i] = fs.readFileSync(method_file).toString();
+
+    // console.log("method_str[",i,"]:",method_strs[i])
+
+    method_strs[i] = method_strs[i].replace(/sub_method/g, method_name)
+    method_strs[i] = method_strs[i].replace(/sub_args/g, arg_str)
+    method_strs[i] = method_strs[i].replace(/sub_log_args/g, arg_log_str)
+
+
 }
 
-// ***************************** start from here **********************
+var method_str = ''
+for (var i in method_strs){
+    method_str = method_str + method_strs[i]
+}
 
-var output_str = header_str + module_vars_str
+
+//  **********  create module.exports str *************
+var exports_str = 'module.exports = + Contract;';
+
+
+
+
+
+
+var output_str = header_str + module_vars_str + method_str
 
 fs.writeFileSync(output_file, output_str);
+
+
+// ***************************** old code below **********************
 
 return
 
 
 
 
-var method = iface[1];
-// console.log("method: ",method)
-var method_name = method.name;
-
-// var method_args = 'val, tx_object';
-var method_args = 'arg_array'
-//
-
-// read in helper_object_def template
-var object_def_file = process.cwd() + mushroom_config.structure.helper_generator_location + 'helper_template_object_def.js';
-var object_def_str = fs.readFileSync(object_def_file).toString();
-
-// read in helper_method template
-var method_file = process.cwd() + mushroom_config.structure.helper_generator_location + 'helper_template_method_sendtx.js';
-var method_str = fs.readFileSync(method_file).toString();
-
-// create module.exports str
-var exports_str = 'module.exports = sub_class;';
-
-// read in helper_test template
-var test_file = process.cwd() + mushroom_config.structure.helper_generator_location + 'helper_test.js';
-var test_str = fs.readFileSync(test_file).toString();
-
-
-
-// var output_str = header_str+  object_def_str + method_str + exports_str//+ test_str
-
-// substitutions:
-
-
-
-output_str = output_str.replace(/sub_class/g, contract_name);
-output_str = output_str.replace(/sub_method/g, method_name);
-output_str = output_str.replace(/sub_args/g, method_args);
 
 
 
 
-fs.writeFileSync(output_file, output_str);
-
-
-
-
-//
-// console.log("num methods: ", JSON.parse(iface).length)
 

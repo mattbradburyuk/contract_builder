@@ -1,4 +1,4 @@
-// module variables (closed over)
+// ******** module variables (closed over when module required - I think) ************
 
 var abi = JSON.parse('sub_abi');
 var address = 'sub_address';
@@ -17,3 +17,5 @@ sub_class.get_address = function(){
 sub_class.get_contract = function(){
     return contract
 }
+
+

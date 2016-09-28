@@ -1,13 +1,13 @@
-
+// ********* sub_method **********
 
 sub_class.sub_method = function (args) {
         
         console.log("sub_method called")
-        console.log(" ---> args[0]:", args[0], "\n ---> args[1]", args[1])
+        console.log(sub_log_args)
 
         return new Promise(function (resolve, reject) {
 
-            contract.sub_method.sendTransaction(args[0],args[1], callback);
+            contract.sub_method.sendTransaction(sub_args, callback);
 
             var timer;
 
@@ -36,7 +36,4 @@ sub_class.sub_method = function (args) {
         });
 };
 
-
-// console.log("sub_class: ", sub_class);
-// console.log("sub_class.prototype: ", sub_class.prototype);
 
