@@ -1,6 +1,6 @@
 {
-  "name": "compiler",
-  "version": "0.0.1",
+  "name": "mushroom",
+  "version": "0.0.2",
   "dependencies": {
     "command-line-args": "^2.1.6",
     "jayson": "^2.0.0",

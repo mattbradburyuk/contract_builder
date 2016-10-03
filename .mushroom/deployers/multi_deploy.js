@@ -76,7 +76,7 @@ function unlock_acc(pass_through){
     console.log("\nUnlocking coinbase account");
     return new Promise(function (resolve,reject){
 
-        web3.personal.unlockAccount(web3.eth.accounts[0],'mattspass', callback);  // unlock accounts
+        web3.personal.unlockAccount(web3.eth.accounts[0], 'mattspass', callback);  // unlock accounts
 
         function callback(e,r) {
             if (e) {
