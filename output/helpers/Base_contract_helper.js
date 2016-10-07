@@ -14,7 +14,7 @@ web3.setProvider(new web3.providers.HttpProvider(url));
 // ******** module variables (closed over when module required - I think) ************
 
 var abi = JSON.parse('[{"constant":true,"inputs":[],"name":"get_base_value","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"val","type":"uint256"}],"name":"set_base_value","outputs":[],"payable":false,"type":"function"},{"inputs":[],"type":"constructor"}]');
-var address = '0x9bd4d0d8bdf16c27939d204736824cb5b263d76e';
+var address = '0x2cf18f7d2eb62b088a972aa18de66d0691a8ac1d';
 var contract = web3.eth.contract(abi).at(address);
 
 function Contract(){
